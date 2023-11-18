@@ -18,7 +18,7 @@ END milestone3;
 
 CREATE OR REPLACE PACKAGE BODY milestone3 AS
 
-  -- Function Definitions
+  -- Quesion 1
 
   FUNCTION query_average_subscribers RETURN SYS_REFCURSOR IS
     rc SYS_REFCURSOR;
@@ -37,7 +37,8 @@ CREATE OR REPLACE PACKAGE BODY milestone3 AS
         AverageSubscribers;
     RETURN rc;
   END query_average_subscribers;
-
+  
+  -- Quesion 2
   FUNCTION query_total_videos_per_creator RETURN SYS_REFCURSOR IS
     rc SYS_REFCURSOR;
   BEGIN
@@ -54,6 +55,7 @@ CREATE OR REPLACE PACKAGE BODY milestone3 AS
     RETURN rc;
   END query_total_videos_per_creator;
 
+  -- Quesion 3
   FUNCTION query_average_videos_per_week RETURN SYS_REFCURSOR IS
     rc SYS_REFCURSOR;
   BEGIN
@@ -71,6 +73,7 @@ CREATE OR REPLACE PACKAGE BODY milestone3 AS
     RETURN rc;
   END query_average_videos_per_week;
 
+  -- Quesion 4
   FUNCTION query_comment_to_view_ratio RETURN SYS_REFCURSOR IS
     rc SYS_REFCURSOR;
   BEGIN
@@ -90,6 +93,7 @@ CREATE OR REPLACE PACKAGE BODY milestone3 AS
     RETURN rc;
   END query_comment_to_view_ratio;
 
+-- Quesion 5
   FUNCTION query_average_comments_by_country RETURN SYS_REFCURSOR IS
     rc SYS_REFCURSOR;
   BEGIN
@@ -103,6 +107,7 @@ CREATE OR REPLACE PACKAGE BODY milestone3 AS
     RETURN rc;
   END query_average_comments_by_country;
 
+-- Quesion 6
   FUNCTION query_engagement_rate RETURN SYS_REFCURSOR IS
     rc SYS_REFCURSOR;
   BEGIN
@@ -116,6 +121,7 @@ CREATE OR REPLACE PACKAGE BODY milestone3 AS
     RETURN rc;
   END query_engagement_rate;
 
+-- Quesion 7
   FUNCTION query_top_and_bottom_categories RETURN SYS_REFCURSOR IS
     rc SYS_REFCURSOR;
   BEGIN
@@ -141,6 +147,7 @@ CREATE OR REPLACE PACKAGE BODY milestone3 AS
     RETURN rc;
   END query_top_and_bottom_categories;
 
+-- Quesion 8
   FUNCTION query_like_to_subscriber_ratio RETURN SYS_REFCURSOR IS
     rc SYS_REFCURSOR;
   BEGIN
@@ -160,6 +167,7 @@ CREATE OR REPLACE PACKAGE BODY milestone3 AS
     RETURN rc;
   END query_like_to_subscriber_ratio;
 
+-- Quesion 9
   FUNCTION query_monthly_activity RETURN SYS_REFCURSOR IS
     rc SYS_REFCURSOR;
   BEGIN
@@ -188,6 +196,7 @@ CREATE OR REPLACE PACKAGE BODY milestone3 AS
     RETURN rc;
   END query_monthly_activity;
 
+-- Quesion 10
   FUNCTION query_avg_likes_by_country RETURN SYS_REFCURSOR IS
     rc SYS_REFCURSOR;
   BEGIN
