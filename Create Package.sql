@@ -58,16 +58,20 @@ CREATE OR REPLACE PACKAGE BODY milestone3 AS
     rc SYS_REFCURSOR;
   BEGIN
     OPEN rc FOR
-        SELECT
-            c.Genre,
-            v.Username,
-            COUNT(*) / (TRUNC(SYSDATE) - TRUNC(MIN(v.PublishedOn))) AS AvgVideosPerWeek
-        FROM
-            Categorys c
-        JOIN
-            Video v ON c.CategoryID = v.CategoryID
-        GROUP BY
-            c.Genre, v.Username;
+        SELECT 
+            cat.CategoryID,
+            cat.genre,
+            COUNT(v.VideoID) / NULLIF(SUM(TRUNC((CURRENT_DATE - c.JoinDate) / 7)), 0) AS AvgVideosPerWeek
+        FROM 
+            Video v
+        JOIN 
+            Creator c ON v.Username = c.Username
+        JOIN 
+            Categorys cat ON v.CategoryID = cat.CategoryID
+        GROUP BY 
+            cat.CategoryID, cat.genre
+        ORDER BY 
+            AvgVideosPerWeek DESC;
     RETURN rc;
   END query_average_videos_per_week;
 

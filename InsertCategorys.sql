@@ -48,3 +48,4 @@ VALUES (24, 'Entertainment', 'Category for general entertainment content.');
 INSERT INTO Categorys (CategoryID, Genre, CategoryDescription) 
 VALUES (25, 'News & Politics', 'Category for news and political content.');
 
+COMMIT;
