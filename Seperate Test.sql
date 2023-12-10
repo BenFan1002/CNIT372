@@ -12,15 +12,15 @@ ORDER BY
     AverageSubscribers;
 
 -- Question 2
-SELECT
-Username,
-	Count(TotalVideos) as TotalNumVideos
-FROM
-	Creator
-GROUP BY
-	Username
-ORDER BY
-	Count(TotalVideos) DESC;
+SELECT 
+    *
+FROM 
+    Creator c
+ORDER BY 
+    TOTALVIDEOS DESC
+FETCH FIRST ROW WITH TIES;
+
+
 -- Question 3
 
 SELECT
@@ -42,11 +42,11 @@ SELECT
     SUM(cr.TotalViews) AS TotalViews,
     SUM(v.NumOfComments) / SUM(cr.TotalViews) AS CommentToViewRatio
 FROM
-    FAN321.Categorys c
+    Categorys c
 LEFT JOIN
-    FAN321.Video v ON c.CategoryID = v.CategoryID
+    Video v ON c.CategoryID = v.CategoryID
 LEFT JOIN 
-    FAN321.Creator cr ON cr.username = v.username    
+    Creator cr ON cr.username = v.username    
 ORDER BY
     CommentToViewRatio DESC;
 
@@ -59,12 +59,20 @@ Group by c.Country
 Order by AVG(v.NumOfComments); 
 
 -- Question 6
-Select c.Username, AVG((v.NumOfComments +  v.NumOfLikes) / (c.TotalVideos)) AS EngagementRate
-From creator c
-Inner Join video v
-ON c.Username = v.Username
-Group by c.Username
-Order by AVG(v.NumOfComments);
+SELECT 
+    c.Username, 
+    (SUM(v.NumOfLikes) + SUM(v.NumOfComments)) / COUNT(v.VideoID) AS AvgEngagementRate
+FROM 
+    Creator c
+JOIN 
+    Video v ON c.Username = v.Username
+GROUP BY 
+    c.Username
+HAVING 
+    COUNT(v.VideoID) > 0
+ORDER BY 
+    AvgEngagementRate DESC
+FETCH FIRST ROW WITH TIES;
 
 -- Question 7
 SELECT CATEGORYid, genre, TotalCategoryviews FROM (

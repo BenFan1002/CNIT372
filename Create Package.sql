@@ -43,15 +43,13 @@ CREATE OR REPLACE PACKAGE BODY milestone3 AS
     rc SYS_REFCURSOR;
   BEGIN
     OPEN rc FOR
-      SELECT
-        Username,
-        Count(*) as TotalNumVideos
-      FROM
-        Creator
-      GROUP BY
-        Username
-      ORDER BY
-        Count(*) DESC;
+        SELECT 
+            *
+        FROM 
+            Creator c
+        ORDER BY 
+            TOTALVIDEOS DESC
+        FETCH FIRST ROW WITH TIES;
     RETURN rc;
   END query_total_videos_per_creator;
 
@@ -112,12 +110,20 @@ CREATE OR REPLACE PACKAGE BODY milestone3 AS
     rc SYS_REFCURSOR;
   BEGIN
     OPEN rc FOR
-      SELECT c.Username, AVG((v.NumOfComments +  v.NumOfLikes) / (c.TotalVideos)) AS EngagementRate
-      FROM creator c
-      INNER JOIN video v
-      ON c.Username = v.Username
-      GROUP BY c.Username
-      ORDER BY AVG(v.NumOfComments);
+        SELECT 
+            c.Username, 
+            (SUM(v.NumOfLikes) + SUM(v.NumOfComments)) / COUNT(v.VideoID) AS AvgEngagementRate
+        FROM 
+            Creator c
+        JOIN 
+            Video v ON c.Username = v.Username
+        GROUP BY 
+            c.Username
+        HAVING 
+            COUNT(v.VideoID) > 0
+        ORDER BY 
+            AvgEngagementRate DESC
+        FETCH FIRST ROW WITH TIES;
     RETURN rc;
   END query_engagement_rate;
 

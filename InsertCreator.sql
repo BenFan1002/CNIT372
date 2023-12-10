@@ -1979,3 +1979,4 @@ INSERT INTO Creator (Username , NumOfSubscribers , TotalViews , Country , JoinDa
 VALUES ('RobTopGames', 12300000, 374123483.0, 'Sweden', TO_DATE('2012/May/9', 'YYYY/Mon/DD'), 379);
 INSERT INTO Creator (Username , NumOfSubscribers , TotalViews , Country , JoinDate , TotalVideos )
 VALUES ('Make Joke Of', 12300000, 2129773714.0, 'India', TO_DATE('2017/Aug/1', 'YYYY/Mon/DD'), 268);
+COMMIT;
